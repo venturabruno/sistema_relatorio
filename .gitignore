@@ -1,0 +1,15 @@
+/admIN/
+/classes/
+/css/
+/envios/
+/includes/
+/js/
+/media/
+/paginas/
+/template/
+/tmp/
+/vendor/
+/.htaccess
+/composer.lock
+/index.php
+/init.header.php
