@@ -42,7 +42,7 @@ class DiarioDAO
         $stm->bindValue(':titulo', $diario->getTitulo(), PDO::PARAM_STR);
         $stm->bindValue(':arquivo_lnk', $diario->getArquivoLnk(), PDO::PARAM_STR);
         $stm->bindValue(':reg_status', $diario->getRegStatus(), PDO::PARAM_STR);
-        $stm->bindValue(':ult_atualizacao', $diario->getUltAtualizacao()->format("Y-m-d H:i:s"));
+        $stm->bindValue(':ult_atualizacao', $diario->getUltAtualizacao(), PDO::PARAM_STR);
                 
         if ($stm->execute()) {
             return (int) $this->pdo->lastInsertId();

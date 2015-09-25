@@ -32,7 +32,6 @@ class DiarioDAOTest extends \PHPUnit_Framework_TestCase
         $diario->setTitulo("teste");
         $diario->setArquivoLnk("arquivo.jpg");
         $diario->setRegStatus("ativo");
-        $diario->setUltAtualizacao(new \DateTime());
         $dataAccess = new DiarioDAO($this->pdo);
         $id = $dataAccess->insert($diario);
         $this->assertEquals(1, $id);
@@ -43,7 +42,6 @@ class DiarioDAOTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($diario->getTitulo(), $diarioInserido->getTitulo());
         $this->assertEquals($diario->getArquivoLnk(), $diarioInserido->getArquivoLnk());
         $this->assertEquals($diario->getRegStatus(), $diarioInserido->getRegStatus());
-        $this->assertEquals($diario->getUltAtualizacao(), $diarioInserido->getUltAtualizacao());
     }
     
     /**

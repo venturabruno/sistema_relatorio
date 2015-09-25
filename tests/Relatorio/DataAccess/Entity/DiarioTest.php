@@ -1,7 +1,6 @@
 <?php
 
 use Relatorio\DataAccess\Entity\Diario;
-use Relatorio\DataAccess\Entity\Relatorio\DataAccess\Entity;
 
 class DiarioTest extends \PHPUnit_Framework_TestCase
 {

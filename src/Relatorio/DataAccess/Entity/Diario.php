@@ -97,7 +97,14 @@ class Diario
 
     public function getUltAtualizacao()
     {
-        return new \DateTime($this->ult_atualizacao);
+        $return = "";
+        
+        if (!empty($this->ult_atualizacao))
+        {
+            $return = \DateTime::createFromFormat('Y-m-d H:i:s', $this->ult_atualizacao);
+        }
+        
+        return $return;
     }
 
     public function setUltAtualizacao($ult_atualizacao)
