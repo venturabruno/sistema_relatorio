@@ -27,19 +27,19 @@ class DiarioDAO
     			 titulo,
                  arquivo_lnk,
     			 reg_status,
-    			 ult_atualizacao,
-    			 data_registro
+    			 ult_atualizacao
             ) VALUES (
     			 :cliente_id,
     			 :cod_obra,
     			 :titulo,
                  :arquivo_lnk,
     			 :reg_status,
-    			 :ult_atualizacao,
-            );');
-    
+    			 :ult_atualizacao
+            )');
+        
         $stm->bindValue(':cliente_id', $diario->getClienteId(), PDO::PARAM_INT);
         $stm->bindValue(':cod_obra', $diario->getCodObra(), PDO::PARAM_INT);
+        $stm->bindValue(':titulo', $diario->getTitulo(), PDO::PARAM_STR);
         $stm->bindValue(':arquivo_lnk', $diario->getArquivoLnk(), PDO::PARAM_STR);
         $stm->bindValue(':reg_status', $diario->getRegStatus(), PDO::PARAM_STR);
         $stm->bindValue(':ult_atualizacao', $diario->getUltAtualizacao()->format("Y-m-d H:i:s"));
@@ -53,7 +53,7 @@ class DiarioDAO
     public function getById($id)
     {
         if (is_int($id)) {
-            $obra = null;
+            $diario = null;
             $stm = $this->pdo->prepare(
                 'SELECT
                     *
@@ -65,13 +65,13 @@ class DiarioDAO
             $stm->setFetchMode(PDO::FETCH_CLASS, 'Relatorio\DataAccess\Entity\Diario');
             $stm->bindValue(':obras_diario_id', $id, PDO::PARAM_INT);
             if ($stm->execute()) {
-                $obra = $stm->fetch();
+                $diario = $stm->fetch();
                 $stm->closeCursor();
             }
-            if (!$obra instanceof Obra) {
+            if (!$diario instanceof Diario) {
                 throw new \RuntimeException('Falha ao recuparar o diario');
             }
-            return $obra;
+            return $diario;
         }
         throw new \InvalidArgumentException(print_r($id, true) . ' e um valor inválido');
     }

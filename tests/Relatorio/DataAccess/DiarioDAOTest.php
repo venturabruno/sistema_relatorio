@@ -5,6 +5,8 @@ use Relatorio\DataAccess\DiarioDAO;
 
 class DiarioDAOTest extends \PHPUnit_Framework_TestCase
 {
+	protected $pdo;
+	
     protected function setUp()
     {
         $this->pdo = new PDO('sqlite::memory:');
@@ -31,14 +33,11 @@ class DiarioDAOTest extends \PHPUnit_Framework_TestCase
         $diario->setArquivoLnk("arquivo.jpg");
         $diario->setRegStatus("ativo");
         $diario->setUltAtualizacao(new \DateTime());
-        
         $dataAccess = new DiarioDAO($this->pdo);
         $id = $dataAccess->insert($diario);
         $this->assertEquals(1, $id);
         $diarioInserido = $dataAccess->getById($id);
-        
         $this->assertInstanceOf('Relatorio\DataAccess\Entity\Diario', $diarioInserido);
-        $this->assertEquals($diario->getObrasDiarioId(), $diarioInserido->getObrasDiarioId());
         $this->assertEquals($diario->getClienteId(), $diarioInserido->getClienteId());
         $this->assertEquals($diario->getCodObra(), $diarioInserido->getCodObra());
         $this->assertEquals($diario->getTitulo(), $diarioInserido->getTitulo());

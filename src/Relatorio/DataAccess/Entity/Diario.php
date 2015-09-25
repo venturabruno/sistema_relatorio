@@ -97,7 +97,7 @@ class Diario
 
     public function getUltAtualizacao()
     {
-        return $this->ult_atualizacao;
+        return new \DateTime($this->ult_atualizacao);
     }
 
     public function setUltAtualizacao($ult_atualizacao)
