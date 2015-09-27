@@ -1,4 +1,5 @@
 <?php
+
 namespace Relatorio\DataAccess\Entity;
 
 class Diario
@@ -97,14 +98,13 @@ class Diario
 
     public function getUltAtualizacao()
     {
-        $return = "";
         
-        if (!empty($this->ult_atualizacao))
+        if (is_string($this->ult_atualizacao))
         {
-            $return = \DateTime::createFromFormat('Y-m-d H:i:s', $this->ult_atualizacao);
+            $this->ult_atualizacao = \DateTime::createFromFormat('Y-m-d H:i:s', $this->ult_atualizacao);
         }
         
-        return $return;
+        return $this->ult_atualizacao;
     }
 
     public function setUltAtualizacao($ult_atualizacao)
